@@ -122,10 +122,11 @@ def predict(model, data, out_fname = None):
     for i, r in data.iterrows():
 
        
-        if i % 900 == 0 and i != 0 and i < (len(data) - 900):
-            val = predict_loop(data.iloc[i-900:i]['grid'].to_list())
-            data.loc[i-900:i, ["EV"]] = val
-        else:
+        if i % 900 == 0 and i != 0:
+            if len(data.iloc[i-900:i]['grid'].to_list()) == 900:    
+                val = predict_loop(data.iloc[i-900:i]['grid'].to_list())
+                data.loc[i-900:i, ["EV"]] = val
+        if len(data.iloc[i:]['grid'].to_list()) < 900:
             data.loc[i:, ["EV"]] = "NA"
 
     # Exporting the dataframe with the predictions column to a csv file
