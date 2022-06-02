@@ -74,7 +74,7 @@ def predict(model, data, out_fname = None):
     if 'grid' not in data.columns:
         raise Exception("Column named 'grid' not found in the dataframe!")
     
-    # Raise an exception if the column grid has NaN values
+    # Handling null values in the grid column
     if data.grid.isna().any():
         data.grid = data.grid.fillna(0)
     
@@ -114,22 +114,19 @@ def predict(model, data, out_fname = None):
         return EV
 
     # Creating a new column for the EV values
-    preds = [None]
+    data['EV'] = " "
 
     print("Predicting 15 min EV values")
 
     # Looping through the dataframe and generating the EV values
     for i, r in data.iterrows():
 
-        if i == 0:
-            pass
+       
+        if i % 900 == 0 and i != 0 and i < (len(data) - 900):
+            val = predict_loop(data.iloc[i-900:i]['grid'].to_list())
+            data.loc[i-900:i, ["EV"]] = val
         else:
-            if i % 900 == 0 and i < (len(data) - 900):
-                preds.append(predict_loop(data.iloc[i-899:i+1]['grid'].to_list()))
-            else:
-                preds.append(None)
-    
-    data['EV'] = preds
+            data.loc[i:, ["EV"]] = "NA"
 
     # Exporting the dataframe with the predictions column to a csv file
     f = "predictions_" + str(15) + "_min.csv"
