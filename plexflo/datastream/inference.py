@@ -76,7 +76,7 @@ def predict(model, data, out_fname = None):
     
     # Raise an exception if the column grid has NaN values
     if data.grid.isna().any():
-        raise Exception("Missing grid data (NaN values)")
+        data.grid = data.grid.fillna(0)
     
     # Raise an exception if the column grid has data other than int and float    
     if pd.api.types.is_numeric_dtype(data.grid) == False:
