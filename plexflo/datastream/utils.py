@@ -38,7 +38,7 @@ def export(history):
     plt.grid()
 
     # Saving the accuracy graph as png
-    plt.savefig(os.path.join(os.getcwd(), "output", "graphs", "accuracy_15_min.png"))
+    plt.savefig(os.path.join(os.getcwd(), "output", "graphs", "accuracy.png"))
 
     # Plotting the Accuracy Graph
     plt.figure()
@@ -57,4 +57,4 @@ def export(history):
     plt.grid()
 
     # Saving the loss graph as png
-    plt.savefig(os.path.join(os.getcwd(), "output", "graphs", "loss_15_min.png"))
+    plt.savefig(os.path.join(os.getcwd(), "output", "graphs", "loss.png"))
