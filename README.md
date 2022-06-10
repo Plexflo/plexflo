@@ -36,7 +36,7 @@ For examples an how to use the library, see the [Official guide](https://docs.pl
 ## Contribution Guidelines
 
 If you want to contribute to Plexflo, be sure to review the
-[contribution guidelines](CONTRIBUTING.md). This project adheres to TensorFlow's
+[contribution guidelines](CONTRIBUTING.md). This project adheres to Plexflo's
 [code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to
 uphold this code.
 
