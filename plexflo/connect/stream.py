@@ -31,9 +31,6 @@ def stream(data, host = "127.0.0.1", port = 5999, interval = 1):
     # Raise an exception if the dataframe is empty
     if data.empty:
         raise Exception("DataFrame is empty!")
-
-    # Converting column names to lower case internally for validation purposes
-    data.columns = map(str.lower, data.columns)
             
     # Raise an exception if the column grid is not found
     if 'kW' not in data.columns:
