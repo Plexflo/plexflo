@@ -1,1 +1,2 @@
 include plexflo/datastream/models/*
+include plexflo/connect/*
