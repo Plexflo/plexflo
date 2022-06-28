@@ -1,6 +1,6 @@
-
 import time
 import socket
+import pandas as pd
 
 # Defining a function for sending the data to a server
 def stream(data, host = "127.0.0.1", port = 5999, interval = 1):
@@ -27,6 +27,25 @@ def stream(data, host = "127.0.0.1", port = 5999, interval = 1):
 
     # Port to listen on
     PORT = port
+
+    # Raise an exception if the dataframe is empty
+    if data.empty:
+        raise Exception("DataFrame is empty!")
+
+    # Converting column names to lower case internally for validation purposes
+    data.columns = map(str.lower, data.columns)
+            
+    # Raise an exception if the column grid is not found
+    if 'kW' not in data.columns:
+        raise Exception("Column named 'kW' not found in the dataframe!")
+    
+    # Handling null values in the grid column
+    if data.kW.isna().any():
+        data.kW = data.kW.fillna(0)
+    
+    # Raise an exception if the column grid has data other than int and float    
+    if pd.api.types.is_numeric_dtype(data.kW) == False:
+        raise Exception("kW data must be a numeric type (integer or float)")
 
     # Create a socket (SOCK_STREAM means a TCP socket) 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
