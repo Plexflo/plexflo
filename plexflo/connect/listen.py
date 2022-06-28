@@ -80,6 +80,7 @@ def client_handler(conn, addr):
                         # File name convention: <client_ip>_<client_port>_<date>_<time>.csv
                         f_name = addr[0] + "_" + str(addr[1]) + "_" + datetime.now().strftime("%d-%m-%Y_%H-%M-%S.csv")
                         df.to_csv(f_name, index = False)
+                        print("The dataframe has been saved to: " + f_name)
                         break
                     
                     # If the packet is not empty, append the data to the list after decoding it
@@ -94,7 +95,6 @@ def client_handler(conn, addr):
             
             # Close the connection and print a message
             print("The client disconnected from the server")
-            print("The dataframe has been saved to: " + f_name)
             break
 
     return    
