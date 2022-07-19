@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://plexflo-opensource.s3.amazonaws.com/Plexflo_logo.png">
+  <img src="https://res.cloudinary.com/plexflo-india/image/upload/v1658203170/Open%20Plexflo/Plexflo_logo_efijm6.png">
 </div>
 
 [![Python](https://shields.io/pypi/pyversions/plexflo)](https://badge.fury.io/py/tensorflow)
