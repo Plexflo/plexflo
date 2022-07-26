@@ -157,7 +157,7 @@ def collect(host = "127.0.0.1", port = 5999):
         s.listen()
 
         # Setting a timeout for the socket to close if there are no connections for 30s
-        s.settimeout(30)
+        # s.settimeout(30)
 
         print("Listening on port: " + str(PORT))  
         
