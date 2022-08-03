@@ -19,7 +19,7 @@ def show():
     """
 
     # Listing all the files in the directory
-    files = os.listdir(os.path.join(os.getcwd(), "files"))
+    files = os.listdir(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'files'))
 
     # Printing the files
     for file in files:
@@ -43,7 +43,7 @@ def use(name="morning_peak_average_household_WD_SU.csv"):
     """
 
     # Loading the profile
-    df = pd.read_csv(os.path.join(os.getcwd(), "files", name))
+    df = pd.read_csv(os.path.join(os.path.dirname(os.path.realpath(__file__)), "files", name))
 
     # Returning the loaded profile
     return df
