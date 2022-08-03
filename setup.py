@@ -25,7 +25,7 @@ setup(
     url="https://github.com/plexflo/plexflo",
     packages=find_packages(),
     include_package_data=True,
-    install_requires = ['numpy', 'pandas', 'sklearn', 'openpyxl', 'pathlib', 'tensorflow', 'matplotlib'],
+    install_requires = ['numpy', 'pandas', 'sklearn', 'openpyxl', 'pathlib', 'tensorflow', 'matplotlib', 'geopy', 'osgeo', 'geopandas', 'scipy', 'fitter'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
