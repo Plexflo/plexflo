@@ -12,6 +12,12 @@ datastream helps researchers and engineers to try our Deep Learning models for d
 
 ### connect
 connect helps users to leverage our easy-to-use socket programming wrapper for hassle free client-server use-cases.
+
+### loadprofiles
+loadprofiles helps researchers and engineers to try our pre-defined 24-hour load profiles for various scenarios in their load forecasting use-cases.
+
+### utils
+utils helps users take advantage of our easy-to-use mathematical and statistical functions.
 """
 
 setup(
@@ -25,7 +31,7 @@ setup(
     url="https://github.com/plexflo/plexflo",
     packages=find_packages(),
     include_package_data=True,
-    install_requires = ['numpy', 'pandas', 'sklearn', 'openpyxl', 'pathlib', 'tensorflow', 'matplotlib', 'geopy', 'osgeo', 'geopandas', 'scipy', 'fitter'],
+    install_requires = ['numpy', 'pandas', 'sklearn', 'openpyxl', 'pathlib', 'matplotlib', 'scipy', 'fitter'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
