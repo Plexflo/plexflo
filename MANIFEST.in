@@ -1,1 +1,4 @@
 include plexflo/datastream/models/*
+include plexflo/connect/*
+include plexflo/load_profiles/files/*
+include plexflo/utils/*
