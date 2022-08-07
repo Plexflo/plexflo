@@ -132,6 +132,15 @@ def cagr(df, period=None):
 
     return answer
 
+
+def cagr_basic(initial_value, final_value, years_of_analysis):
+    return round(((final_value/initial_value)**(1/years_of_analysis) - 1)*100,2 )
+
+def compound_interest(principle, rate, time):
+    # Calculates compound interest
+    amount = principle * (pow((1 + rate / 100), time))
+    return amount - principle, amount
+
 def intersection(lst1, lst2):
     return list(set(lst1) & set(lst2))
 
@@ -209,3 +218,15 @@ def create_cagr(df, years=5):
     return cagr_value
 
 
+def multiply_dict_values(dict_a, dict_b):
+    dict_c = {}
+    for key in dict_a:
+        dict_c[key] = int(dict_a[key]) * int(dict_b[key])
+    return dict_c
+
+
+def combine_dicts(dict_a, dict_b, weights_a=1, weights_b=1):
+    dict_c = {}
+    for key in dict_a:
+        dict_c[key] = (int(dict_a[key]) * weights_a + int(dict_b[key]) * weights_b)/(weights_a + weights_b)
+    return dict_c
