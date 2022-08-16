@@ -7,6 +7,8 @@ from fitter import HistFit
 np.set_printoptions(precision=3)
 
 
+
+
 def kernel_density():
     pass
 
@@ -67,15 +69,3 @@ def build_probability_distribution_function(val, sample_fraction=1.0, bin_size=1
     z = f.get_best(method='sumsquare_error')
     return z.keys(), z.items()
 
-
-# # TODO: Delete these tests in the final build
-# df = pd.read_csv("C:\\Users\\Administrator\\PycharmProjects\\NG_specific_codes\\rooftopmodule\\Outputs"
-#                  "\\Solar_Adoption_Testdataset.csv", index_col=None, low_memory=False)
-# df_adopted = df[df['ADOPTED_SOLAR'] == 1]
-# df_not_adopted = df[df['ADOPTED_SOLAR'] == 0]
-# print(f"Total Adopted Solar = {len(df_adopted)}")
-# histogram(df_adopted['W_SCORE'], title="Adopted Solar - W_Score Distribution", bin_size=100)
-# histogram(df_not_adopted['W_SCORE'], title="Did not Adopt Solar - W_Score Distribution", bin_size=100)
-
-# a, b = build_probability_distribution_function(df_not_adopted['W_SCORE'], sample_fraction=0.1, title="NOT Adopted
-# Solar : W_Score PDF") print(a, b) fit_best_distribution(df_not_adopted['W_SCORE'], sample_fraction=0.1)

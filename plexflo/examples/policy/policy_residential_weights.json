@@ -1,0 +1,72 @@
+{
+  "transportation": {
+    "evChargerDeployment": 1,
+    "reductionInRangeAnxiety": 5,
+    "reductionInChargingTime": 8,
+    "increaseInMilesPerCharge": 1,
+    "evSubsidyPercentageOfVehicleCost": 4,
+    "modeShift": 1,
+    "passengerLdv": 9,
+    "freightLdv": 1,
+    "passengerHdv": 2,
+    "freightHdv": 1,
+    "passengerAircraft": 1,
+    "freightAircraft": 1,
+    "passengerRail": 1,
+    "freightRail": 1,
+    "passengerShips": 1,
+    "freightShips": 1,
+    "passengerMotorbikes": 1
+  },
+  "energySupply": {
+    "gridScale": 5,
+    "demandResponse": -7,
+    "cleanElectricity": 1,
+    "reductionSoftCosts": 1
+  },
+  "macroFactors": {
+    "gdp": 3,
+    "covid": -3,
+    "housing": 4,
+    "income": 2
+  },
+  "districtHeating": {
+    "heatProductionUsingHydrogen": -9,
+    "hydrogenProductionUsingHydrogen": 1,
+    "industrialElectrificationAndHydrogen": 1
+  },
+  "buildings": {
+    "urbanResidentialHeating":  7,
+    "urbanResidentialAppliances": 5,
+    "ruralResidentialHeating": 4,
+    "ruralResidentialAppliances": 2,
+    "otherComponents": 2,
+    "commercialHeating": 1,
+    "commercialAppliances": 1,
+    "overall": 2,
+    "energyEfficiencyStandardsUrbanResidentialHeating": -4,
+    "urbanResidentialCoolingAndVentilation": 5,
+    "urbanResidentialEnvelope": -5,
+    "urbanResidentialLighting": 2,
+    "energyEfficiencyStandardsUrbanResidentialAppliances": -3,
+    "urbanResidentialOtherComponents": 1,
+    "energyEfficiencyStandardsRuralResidentialHeating": -4,
+    "ruralResidentialCoolingAndVentilation": -2,
+    "ruralResidentialEnvelope": -2,
+    "ruralResidentialLighting": 1,
+    "energyEfficiencyStandardsRuralResidentialAppliances": -3,
+    "ruralResidentialOtherComponents": 1,
+    "energyEfficiencyStandardsCommercialHeating": 1,
+    "commercialCoolingAndVentilation": 1,
+    "commercialEnvelope": 1,
+    "commercialLighting": 1,
+    "energyEfficiencyStandardsCommercialAppliances": 1,
+    "commercialOtherComponents": 1,
+    "workforceDevelopmentAndTrainings": -1,
+    "minimumSolarGenerationFromPV": -2,
+    "reimbursedSolarInstallationCost": -3,
+    "incomeTaxCredit": -3,
+    "incentivesForUsingAppliancesWithLabelsHighlightingTheirEnergyEfficiencies": 4,
+    "incentivesForRetrofittingOldBuildings": 5
+  }
+}
