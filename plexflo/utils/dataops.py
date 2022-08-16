@@ -11,6 +11,69 @@ from pathlib import Path
 # from equations import *
 from ..utils.equations import *
 
+<<<<<<< Updated upstream
+=======
+def auto_data_quality_report(df):
+    """
+    This function will create a data quality report for a dataframe. It will check for missing values, duplicate rows,
+    and duplicate columns.
+    """
+
+    # list all the continuous variable columns
+    continuous_columns = [col for col in df.columns if df[col].dtype == "float64"]
+
+    # list all the categorical variable columns
+    categorical_columns = [col for col in df.columns if df[col].dtype == "object"]
+
+    # list all the geographical variable columns
+    geographical_columns = [col for col in df.columns if all([df[col].dtype == "float64", any([col.endswith("_lat"), col.endswith("_lon"), col.endswith("_latitude"), col.endswith("_X"), col.endswith("_Y")])])]
+
+    # list all the date variable columns
+    date_columns = [col for col in df.columns if df[col].dtype == "datetime64[ns]"]
+
+    # create a dataframe with just the continuous variable columns
+    continuous_df = df[continuous_columns]
+    # find the features, counts, and quartiles for each continuous variable column
+    continuous_features = continuous_df.describe().T.reset_index()
+    continuous_features.columns = ["feature", "count", "mean", "std", "min", "25%", "50%", "75%", "max"]
+    # find the missing value of each continuous variable feature
+    continuous_features["missing"] = continuous_df.isnull().sum()
+    # find the duplicate rows of each continuous variable feature
+    continuous_features["duplicate"] = continuous_df.duplicated().sum()
+
+    # create a dataframe with just the categorical variable columns
+    categorical_df = df[categorical_columns]
+    # find the features, counts, and quartiles for each categorical variable column
+    categorical_features = categorical_df.describe().T.reset_index()
+    categorical_features.columns = ["feature", "count", "unique", "top", "freq", "mode", "missing", "duplicate", "mode freq", "mode freq %", "2nd mode", "2nd mode freq", "2nd mode freq %"]
+
+    # find the missing value of each categorical variable feature
+    categorical_features["missing"] = categorical_df.isnull().sum()
+    # find the duplicate rows of each categorical variable feature
+    categorical_features["duplicate"] = categorical_df.duplicated().sum()
+    # find the mode of each categorical variable feature
+    categorical_features["mode"] = categorical_df.mode().iloc[0]
+    # find the mode frequency of each categorical variable feature
+    categorical_features["mode freq"] = categorical_df.value_counts().iloc[0]
+    # find the mode frequency percentage of each categorical variable feature
+    categorical_features["mode freq %"] = categorical_features["mode freq"] / categorical_features["count"]
+    # 2nd mode is the mode of the top 2 most frequent values
+    categorical_features["2nd mode"] = categorical_features["mode"].iloc[:2].mode().iloc[0]
+    # 2nd mode freq is the frequency of the top 2 most frequent values
+    categorical_features["2nd mode freq"] = categorical_features["freq"].iloc[:2].mode().iloc[0]
+    # 2nd mode freq % is the percentage of the top 2 most frequent values
+    categorical_features["2nd mode freq %"] = categorical_features["2nd mode freq"] / categorical_features["count"]
+
+
+    # Plot the distribution of each continuous variable feature
+    continuous_features.plot(kind="bar", x="feature", y="mean", figsize=(20, 10), legend=False, title="Mean Distribution")
+    plt.savefig(Path(__file__).parent.parent / "data" / "mean_distribution.png")
+    plt.close()
+    return continuous_features, categorical_features
+
+
+
+>>>>>>> Stashed changes
 def min_max_normalize(val):
     """
     Min-max normalization is one of the most common ways to normalize data. For every feature, the minimum value of
