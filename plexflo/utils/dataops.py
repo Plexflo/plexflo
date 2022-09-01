@@ -4,15 +4,14 @@ import math
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-mpl.use('Agg')
+# mpl.use('Agg')
 plt.rcParams['axes.grid'] = False
 from pathlib import Path
 
 # from equations import *
-from ..utils.equations import *
+# from ..utils.equations import *
 
-<<<<<<< Updated upstream
-=======
+
 def auto_data_quality_report(df):
     """
     This function will create a data quality report for a dataframe. It will check for missing values, duplicate rows,
@@ -30,7 +29,7 @@ def auto_data_quality_report(df):
 
     # list all the date variable columns
     date_columns = [col for col in df.columns if df[col].dtype == "datetime64[ns]"]
-
+    # breakpoint()
     # create a dataframe with just the continuous variable columns
     continuous_df = df[continuous_columns]
     # find the features, counts, and quartiles for each continuous variable column
@@ -43,37 +42,39 @@ def auto_data_quality_report(df):
 
     # create a dataframe with just the categorical variable columns
     categorical_df = df[categorical_columns]
+
     # find the features, counts, and quartiles for each categorical variable column
-    categorical_features = categorical_df.describe().T.reset_index()
-    categorical_features.columns = ["feature", "count", "unique", "top", "freq", "mode", "missing", "duplicate", "mode freq", "mode freq %", "2nd mode", "2nd mode freq", "2nd mode freq %"]
+    columns = ["feature", "count", "unique", "mode", "missing", "missing %", "mode freq", "mode freq %", "2nd mode", "2nd mode freq", "2nd mode freq %"]
+    categorical_features = pd.DataFrame(columns=columns)
+    for col in categorical_columns:
+        print(col)
+        # find the features, counts, and quartiles for each categorical variable column
+        # empty initial tepmporary dataframe
+        tmp_df = pd.DataFrame(columns=columns)
+        # breakpoint()
+        tmp_df["feature"] = col
+        tmp_df["count"] = pd.Series(categorical_df[col].value_counts())
+        tmp_df["unique"] = pd.Series(categorical_df[col].nunique())
+        tmp_df["mode"] = pd.Series(categorical_df[col].mode().values[0])
+        # tmp_df["mode freq"] = pd.Series(categorical_df[col].mode().values[1])
+        # tmp_df["mode freq %"] = tmp_df[tmp_df.index == tmp_df["mode"]].values[0][0] / tmp_df["count"]
+        # tmp_df["2nd mode"] = categorical_df[col].mode().values[1]
+        # tmp_df["2nd mode freq"] = tmp_df[tmp_df.index == tmp_df["2nd mode"]].values[0][0]
+        # tmp_df["2nd mode freq %"] = tmp_df[tmp_df.index == tmp_df["2nd mode"]].values[0][0] / tmp_df["count"]
+        tmp_df["missing"] = categorical_df[col].isnull().sum()
+        tmp_df["missing %"] = tmp_df["missing"] / tmp_df["count"]
+        print(tmp_df)
 
-    # find the missing value of each categorical variable feature
-    categorical_features["missing"] = categorical_df.isnull().sum()
-    # find the duplicate rows of each categorical variable feature
-    categorical_features["duplicate"] = categorical_df.duplicated().sum()
-    # find the mode of each categorical variable feature
-    categorical_features["mode"] = categorical_df.mode().iloc[0]
-    # find the mode frequency of each categorical variable feature
-    categorical_features["mode freq"] = categorical_df.value_counts().iloc[0]
-    # find the mode frequency percentage of each categorical variable feature
-    categorical_features["mode freq %"] = categorical_features["mode freq"] / categorical_features["count"]
-    # 2nd mode is the mode of the top 2 most frequent values
-    categorical_features["2nd mode"] = categorical_features["mode"].iloc[:2].mode().iloc[0]
-    # 2nd mode freq is the frequency of the top 2 most frequent values
-    categorical_features["2nd mode freq"] = categorical_features["freq"].iloc[:2].mode().iloc[0]
-    # 2nd mode freq % is the percentage of the top 2 most frequent values
-    categorical_features["2nd mode freq %"] = categorical_features["2nd mode freq"] / categorical_features["count"]
-
+        categorical_features = categorical_features.append(tmp_df, ignore_index=True)
 
     # Plot the distribution of each continuous variable feature
-    continuous_features.plot(kind="bar", x="feature", y="mean", figsize=(20, 10), legend=False, title="Mean Distribution")
-    plt.savefig(Path(__file__).parent.parent / "data" / "mean_distribution.png")
-    plt.close()
+    # continuous_features.plot(kind="bar", x="feature", y="mean", figsize=(20, 10), legend=False, title="Mean Distribution")
+
+    # print(categorical_features)
+
     return continuous_features, categorical_features
 
 
-
->>>>>>> Stashed changes
 def min_max_normalize(val):
     """
     Min-max normalization is one of the most common ways to normalize data. For every feature, the minimum value of
@@ -293,3 +294,9 @@ def combine_dicts(dict_a, dict_b, weights_a=1, weights_b=1):
     for key in dict_a:
         dict_c[key] = (int(dict_a[key]) * weights_a + int(dict_b[key]) * weights_b)/(weights_a + weights_b)
     return dict_c
+
+
+
+df = pd.read_csv("/Users/sayon/Documents/GitHub/plexflo/plexflo/examples/datasets/test.csv")
+
+auto_data_quality_report(df)
