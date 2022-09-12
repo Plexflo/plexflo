@@ -47,9 +47,8 @@ def auto_data_quality_report(df):
     columns = ["feature", "count", "unique", "mode", "missing", "missing %", "mode freq", "mode freq %", "2nd mode", "2nd mode freq", "2nd mode freq %"]
     categorical_features = pd.DataFrame(columns=columns)
     for col in categorical_columns:
-        print(col)
         # find the features, counts, and quartiles for each categorical variable column
-        # empty initial tepmporary dataframe
+        # empty initial temporary dataframe
         tmp_df = pd.DataFrame(columns=columns)
         # breakpoint()
         tmp_df["feature"] = col
